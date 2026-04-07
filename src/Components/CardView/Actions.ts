@@ -10,10 +10,11 @@ export const loadingCarData = async (
   id: number,
   setCarData: React.Dispatch<React.SetStateAction<carModel | null>>,
 ) => {
-  const response = await fetchGetCarData(id, setCarData);
+  const response = await fetchGetCarData(id);
   try {
     if (response) {
-      setCarData(response);
+      console.log("consegui pegar os dados");
+      return setCarData(response);
     }
   } catch (error) {
     console.log("erro ao buscar da api");

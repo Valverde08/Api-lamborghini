@@ -5,10 +5,7 @@ import { CAR_API_JSON } from "../Constants/Car";
 interface ApiResponse {
   cars: carModel[];
 }
-export const fetchGetCarData = async (
-  id: number,
-  setCarDataCallback: React.Dispatch<React.SetStateAction<carModel | null>>,
-) => {
+export const fetchGetCarData = async (id: number) => {
   try {
     const response = await axios.get<ApiResponse>(CAR_API_JSON);
 
@@ -22,7 +19,7 @@ export const fetchGetCarData = async (
         car.id === id;
       }) || null;
 
-    setCarDataCallback(carData);
+    return carData;
   } catch (error) {
     console.log("erro ao Buscar dados da Api", error);
   }
