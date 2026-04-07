@@ -1,10 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { styles } from "./GaraScreenStyle";
+import CardView from "../../Components/CardView/CardView";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function GarageScreen() {
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <View style={styles.cameraBox}>
         <View style={styles.triangleLeftTopCorner}></View>
         <View
@@ -25,8 +27,8 @@ export default function GarageScreen() {
             { bottom: 0, left: 0, transform: [{ rotate: "-90deg" }] },
           ]}
         ></View>
+        <CardView />
       </View>
-      <Text>GarageScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 }
