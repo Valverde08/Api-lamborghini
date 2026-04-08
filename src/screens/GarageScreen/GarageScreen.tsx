@@ -3,7 +3,7 @@ import React from "react";
 import { styles } from "./GaraScreenStyle";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-import CardView from "../../components/CardView/CardView";
+import CardView from "../../Components/CardView/CardView";
 
 export default function GarageScreen() {
   return (

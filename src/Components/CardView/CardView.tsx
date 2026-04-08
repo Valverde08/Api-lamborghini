@@ -6,19 +6,24 @@ import { CAR_ASSETS_BASE_URL } from "../../Constants/Car";
 import { useEffect, useState } from "react";
 import BuyButton from "../BuyButton/BuyButton";
 import { carModel } from "./Props";
-import { loadingCarData } from "./Actions";
+import {
+  handlePreviousItem,
+  loadingCarData,
+  loadingPreviousCar,
+} from "./Actions";
 
 export default function CardView() {
   const [carData, setCarData] = useState<carModel | null>(null);
+  const [cardIndex, setCarIndex] = useState<number>(1);
 
   useEffect(() => {
-  loadingCarData(2, setCarData);
-}, []);
+    loadingCarData(cardIndex, setCarData);
+  }, [cardIndex]);
 
-// Esse useEffect vai disparar quando o carData finalmente mudar
-useEffect(() => {
-  console.log("O estado atualizou para:", carData);
-}, [carData]);
+  // Esse useEffect vai disparar quando o carData finalmente mudar
+  useEffect(() => {
+    console.log("O estado atualizou para:", carData);
+  }, [carData]);
 
   const renderLogoBox = () => (
     <View style={styles.logoContainer}>
@@ -43,15 +48,19 @@ useEffect(() => {
     <Image
       style={styles.imageCar}
       source={{
-        uri: `${CAR_ASSETS_BASE_URL}1.png`,
+        uri: `${CAR_ASSETS_BASE_URL}${carData?.id}.png`,
       }}
     />
   );
 
   const renderPriceControls = () => (
     <View style={styles.priceLabelContainer}>
-      <Button title="<" color={"#01a6b3"} onPress={() => {}} />
-      <Text style={styles.priceLabel}>Valor</Text>
+      <Button
+        title="<"
+        color={"#01a6b3"}
+        onPress={() => loadingPreviousCar(cardIndex, setCarIndex)}
+      />
+      <Text style={styles.priceLabel}>{carData?.price}</Text>
       <Button title=">" color={"#01a6b3"} onPress={() => {}} />
     </View>
   );
