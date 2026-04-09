@@ -23,13 +23,39 @@ export const loadingCarData = async (
 };
 
 export const loadingPreviousCar = async (
-  index: number,
-  setIdexNumber: React.Dispatch<React.SetStateAction<number>>,
+  carData: carModel | null,
+  setCarData: React.Dispatch<React.SetStateAction<carModel | null>>,
 ) => {
-  if (index === 1) {
-    setIdexNumber(5);
-  } else {
-    let indexSuporte: number = index - 1;
-    setIdexNumber(indexSuporte);
+  let response = null;
+  try {
+    if (carData && carData.id > 1) {
+      response = await fetchGetCarData(carData.id - 1);
+    }
+
+    if (response) {
+      setCarData(response);
+    }
+  } catch (error) {
+    console.log("Não foi possível buscar os dados", error);
+    setCarData(null);
+  }
+};
+
+export const loadingNextCar = async (
+  carData: carModel | null,
+  setCarData: React.Dispatch<React.SetStateAction<carModel | null>>,
+) => {
+  let response = null;
+  try {
+    if (carData && carData.id < 10) {
+      response = await fetchGetCarData(carData.id + 1);
+    }
+
+    if (response) {
+      setCarData(response);
+    }
+  } catch (error) {
+    console.log("Não foi possível buscar os dados", error);
+    setCarData(null);
   }
 };

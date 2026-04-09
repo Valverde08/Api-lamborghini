@@ -9,21 +9,16 @@ import { carModel } from "./Props";
 import {
   handlePreviousItem,
   loadingCarData,
+  loadingNextCar,
   loadingPreviousCar,
 } from "./Actions";
 
 export default function CardView() {
   const [carData, setCarData] = useState<carModel | null>(null);
-  const [cardIndex, setCarIndex] = useState<number>(1);
 
   useEffect(() => {
-    loadingCarData(cardIndex, setCarData);
-  }, [cardIndex]);
-
-  // Esse useEffect vai disparar quando o carData finalmente mudar
-  useEffect(() => {
-    console.log("O estado atualizou para:", carData);
-  }, [carData]);
+    loadingCarData(1, setCarData);
+  }, []);
 
   const renderLogoBox = () => (
     <View style={styles.logoContainer}>
@@ -58,10 +53,14 @@ export default function CardView() {
       <Button
         title="<"
         color={"#01a6b3"}
-        onPress={() => loadingPreviousCar(cardIndex, setCarIndex)}
+        onPress={() => loadingPreviousCar(carData, setCarData)}
       />
       <Text style={styles.priceLabel}>{carData?.price}</Text>
-      <Button title=">" color={"#01a6b3"} onPress={() => {}} />
+      <Button
+        title=">"
+        color={"#01a6b3"}
+        onPress={() => loadingNextCar(carData, setCarData)}
+      />
     </View>
   );
 
