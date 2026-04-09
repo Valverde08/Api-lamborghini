@@ -2,6 +2,7 @@ Lamborghini Showcase App
 Esta é uma aplicação interativa desenvolvida para exibir modelos exclusivos da Lamborghini, consumindo dados de uma API simulada (fake API) para listar nomes, valores e imagens dos veículos.
 
 📱 Screenshots
+<br/>
 <img width="343" height="754" alt="image" src="https://github.com/user-attachments/assets/2cf66f62-b4eb-4e40-b57a-76cc7c371754" />
 <img width="343" height="754" alt="image" src="https://github.com/user-attachments/assets/0ee63a32-e032-4dbd-8f8a-89c03961417e" />
 
